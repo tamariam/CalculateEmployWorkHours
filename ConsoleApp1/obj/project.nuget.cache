@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5cqK29E3BUQ=",
+  "dgSpecHash": "NSKzQt4ghqE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\abuli\\OneDrive\\Pictures\\Desktop\\CalculateEmployeeWorkHours\\ConsoleApp1\\ConsoleApp1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\abuli\\OneDrive\\Pictures\\Desktop\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\abuli\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
