@@ -1,16 +1,16 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using System;
-using System.Globalization;
+﻿using System;
+using CsvHelper;
 using System.IO;
+using System.Globalization;
 using System.Linq;
 
-class Program
+namespace CsvReaderDemo
 {
-    public class Employee
+    // Define the EmployeeWorkHours class at the beginning
+    public class EmployeeWorkHours
     {
-        public string EmployeeName { get; set; }
-        public string Department { get; set; }
+        public required string EmployeeName { get; set; }
+        public required string Department { get; set; }
         public int Monday { get; set; }
         public int Tuesday { get; set; }
         public int Wednesday { get; set; }
@@ -18,37 +18,31 @@ class Program
         public int Friday { get; set; }
     }
 
-    static void Main(string[] args)
+    class Program
     {
-        string filePath = "employees.csv"; // Path to your CSV file
-
-        // Set up the CsvConfiguration to ignore header validation
-        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+        static void Main(string[] args)
         {
-            HeaderValidated = null,  // Disable header validation
-            MissingFieldFound = null // Disable missing field validation
-        };
+            // Path to the CSV file
+            string filePath = @"C:\Users\abuli\OneDrive\Pictures\Desktop\ConsoleApp1\ConsoleApp1\employees.csv";
 
-        try
-        {
             using (var reader = new StreamReader(filePath))
-            using (var csv = new CsvReader(reader, config))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                var records = csv.GetRecords<Employee>().ToList();
+                // Read the records into a list of EmployeeWorkHours objects
+                var records = csv.GetRecords<EmployeeWorkHours>().ToList();
 
-                // Loop through records and print employee details
                 foreach (var record in records)
                 {
-                    Console.WriteLine($"Employee Name: {record.EmployeeName}, Department: {record.Department}");
-                    Console.WriteLine($"Monday: {record.Monday}, Tuesday: {record.Tuesday}, Wednesday: {record.Wednesday}");
-                    Console.WriteLine($"Thursday: {record.Thursday}, Friday: {record.Friday}");
-                    Console.WriteLine("----------------------------");
+                    // Accessing the data using get/set properties
+                    string employeeName = record.EmployeeName;
+                    string department = record.Department;
+
+                    // Output each record
+                    Console.WriteLine($"Employee: {employeeName}, Department: {department}");
+                    Console.WriteLine($"Monday: {record.Monday}, Tuesday: {record.Tuesday}, Wednesday: {record.Wednesday}, Thursday: {record.Thursday}, Friday: {record.Friday}");
+                    Console.WriteLine();
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
 }
