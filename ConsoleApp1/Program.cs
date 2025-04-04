@@ -4,12 +4,12 @@ using System.IO;
 using System.Globalization;
 using System.Linq;
 
-namespace CsvReaderDemo
+namespace ConsoleApp1
 {
     // Define the EmployeeWorkHours class at the beginning
-    public class EmployeeWorkHours
+    public class Employee
     {
-        public required string EmployeeName { get; set; }
+        public  required string EmployeeName { get; set; }
         public required string Department { get; set; }
         public int Monday { get; set; }
         public int Tuesday { get; set; }
@@ -29,18 +29,18 @@ namespace CsvReaderDemo
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 // Read the records into a list of EmployeeWorkHours objects
-                var records = csv.GetRecords<EmployeeWorkHours>().ToList();
+                var records = csv.GetRecords<Employee>();
 
-                foreach (var record in records)
+                foreach (var employee in records)
                 {
                     // Accessing the data using get/set properties
-                    string employeeName = record.EmployeeName;
-                    string department = record.Department;
+                    // string employeeName = record.EmployeeName;
+                    // string department = record.Department;
 
                     // Output each record
-                    Console.WriteLine($"Employee: {employeeName}, Department: {department}");
-                    Console.WriteLine($"Monday: {record.Monday}, Tuesday: {record.Tuesday}, Wednesday: {record.Wednesday}, Thursday: {record.Thursday}, Friday: {record.Friday}");
-                    Console.WriteLine();
+                    Console.WriteLine($"Employee: {employee.EmployeeName}, Department: {employee.Department},Monday: {employee.Monday}, Tuesday: {employee.Tuesday}, Wednesday: {employee.Wednesday}, Thursday: {employee.Thursday}, Friday: {employee.Friday}");
+                    
+
                 }
             }
         }
